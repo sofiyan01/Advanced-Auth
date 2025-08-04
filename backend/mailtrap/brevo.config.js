@@ -1,12 +1,12 @@
-// email.config.js
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+// config/brevo.config.js
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 dotenv.config();
 
 export const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST, // smtp-relay.brevo.com
-  port: parseInt(process.env.SMTP_PORT), // 587
-  secure: false, // Use true for port 465
+  port: process.env.SMTP_PORT, // 587
+  secure: false, // TLS (STARTTLS), so keep this false
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
@@ -15,5 +15,5 @@ export const transporter = nodemailer.createTransport({
 
 export const sender = {
   name: "Sayed Sofiyan",
-  address: "sofiyan9545@gmail.com", // You can update this name/email
+  address: process.env.SMTP_USER,
 };

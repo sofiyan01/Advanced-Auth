@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
+import morgan from "morgan";
 
 import { connectDB } from "./db/connectDB.js";
 
@@ -16,8 +17,10 @@ const __dirname = path.resolve();
 
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
+
 app.use(express.json()); // allows us to parse incoming requests:req.body
 app.use(cookieParser()); // allows us to parse incoming cookies
+app.use(morgan("common")); // logs requests to the console
 
 app.use("/api/auth", authRoutes);
 
